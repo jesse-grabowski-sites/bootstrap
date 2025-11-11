@@ -13,8 +13,14 @@ output "terraform_state_bucket_endpoint" {
   description = "Use as TERRAFORM_STATE_BUCKET_ENDPOINT"
 }
 
+output "terraform_state_token_id" {
+  value       = cloudflare_account_token.terraform_state_token.id
+  description = "Use as TERRAFORM_STATE_TOKEN_ID"
+  sensitive   = true
+}
+
 output "terraform_state_token_value" {
-  value       = cloudflare_account_token.terraform_state_token.value
+  value       = sha256(cloudflare_account_token.terraform_state_token.value)
   description = "Use as TERRAFORM_STATE_TOKEN_VALUE"
   sensitive   = true
 }
